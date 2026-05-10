@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modul Praktikum AIoT Device–Edge–Cloud</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#0f172a;
+      color:#e2e8f0;
+      line-height:1.7;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    .hero{
+      min-height:100vh;
+      background:
+      linear-gradient(rgba(15,23,42,.85),rgba(15,23,42,.92)),
+      url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop') center/cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px;
+    }
+
+    .hero-content{
+      max-width:900px;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      margin-bottom:20px;
+      color:#38bdf8;
+    }
+
+    .hero p{
+      font-size:1.2rem;
+      color:#cbd5e1;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 28px;
+      background:#38bdf8;
+      color:#0f172a;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+      background:#0ea5e9;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:999;
+      background:#111827;
+      padding:12px 20px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+
+    nav ul{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:15px;
+      list-style:none;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#cbd5e1;
+      font-size:.95rem;
+      transition:.3s;
+    }
+
+    nav a:hover{
+      color:#38bdf8;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+      padding:60px 0;
+    }
+
+    .section-title{
+      font-size:2.2rem;
+      margin-bottom:20px;
+      color:#38bdf8;
+      border-left:6px solid #38bdf8;
+      padding-left:16px;
+    }
+
+    .card{
+      background:#1e293b;
+      padding:28px;
+      border-radius:20px;
+      margin-bottom:30px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.05);
+    }
+
+    .card h3{
+      color:#7dd3fc;
+      margin-bottom:15px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .mini-card{
+      background:#0f172a;
+      padding:20px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.05);
+      transition:.3s;
+    }
+
+    .mini-card:hover{
+      transform:translateY(-5px);
+      border-color:#38bdf8;
+    }
+
+    ul{
+      padding-left:20px;
+      margin-top:10px;
+    }
+
+    code{
+      background:#0f172a;
+      color:#7dd3fc;
+      padding:2px 6px;
+      border-radius:6px;
+    }
+
+    pre{
+      background:#020617;
+      padding:20px;
+      border-radius:16px;
+      overflow:auto;
+      margin-top:15px;
+      border:1px solid rgba(255,255,255,.05);
+    }
+
+    pre code{
+      background:none;
+      color:#e2e8f0;
+    }
+
+    .workflow{
+      text-align:center;
+      font-size:1.1rem;
+      line-height:2;
+      color:#7dd3fc;
+      margin-top:20px;
+    }
+
+    .highlight{
+      color:#facc15;
+      font-weight:600;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
+    }
+
+    table th,
+    table td{
+      border:1px solid rgba(255,255,255,.1);
+      padding:14px;
+      text-align:left;
+    }
+
+    table th{
+      background:#0f172a;
+      color:#38bdf8;
+    }
+
+    footer{
+      background:#020617;
+      text-align:center;
+      padding:30px;
+      color:#94a3b8;
+      margin-top:40px;
+    }
+
+    .badge{
+      display:inline-block;
+      background:#22c55e;
+      color:white;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:.8rem;
+      margin-bottom:15px;
+    }
+
+    @media(max-width:768px){
+      .hero h1{
+        font-size:2.5rem;
+      }
+
+      .section-title{
+        font-size:1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">MODUL PRAKTIKUM AIoT</div>
+      <h1>AIoT Device → Edge → Cloud</h1>
+      <p>
+        Praktikum lengkap membangun pipeline AIoT menggunakan ESP32,
+        YOLO Object Detection, MQTT, dan Node-RED Dashboard.
+      </p>
+
+      <a href="#materi" class="btn">Mulai Belajar</a>
+    </div>
+  </section>
+
+  <nav>
+    <ul>
+      <li><a href="#materi">Ringkasan</a></li>
+      <li><a href="#kompetensi">Kompetensi</a></li>
+      <li><a href="#arsitektur">Arsitektur</a></li>
+      <li><a href="#workflow">Workflow</a></li>
+      <li><a href="#lab">Lab</a></li>
+      <li><a href="#mqtt">MQTT</a></li>
+      <li><a href="#yolo">YOLO</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#eksperimen">Eksperimen</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <section id="materi">
+      <h2 class="section-title">1. Ringkasan Materi</h2>
+
+      <div class="card">
+        <p>
+          Praktikum ini bertujuan membantu peserta memahami arsitektur AIoT secara utuh:
+        </p>
+
+        <div class="workflow">
+          Device → AI/Edge → MQTT/Network → Dashboard → Decision/Action
+        </div>
+
+        <br>
+
+        <h3>Target Pembelajaran</h3>
+
+        <ul>
+          <li>Memahami arsitektur AIoT end-to-end.</li>
+          <li>Menjalankan ESP32 dan simulasi Wokwi.</li>
+          <li>Mengelola starter repository GitHub.</li>
+          <li>Menjalankan YOLO Object Detection.</li>
+          <li>Publish event AI ke MQTT.</li>
+          <li>Visualisasi realtime menggunakan Node-RED.</li>
+          <li>Menganalisis efisiensi bandwidth AIoT.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="kompetensi">
+      <h2 class="section-title">2. Kompetensi & Capaian</h2>
+
+      <div class="grid">
+
+        <div class="mini-card">
+          <h3>📡 Kompetensi Inti</h3>
+          <p>Memahami workflow device–edge–cloud pada sistem AIoT modern.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>⚙️ Kompetensi Praktis</h3>
+          <p>Setup environment, MQTT, dashboard, dan inferensi AI.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>🧠 Kompetensi Analitis</h3>
+          <p>Menganalisis alur data dan efisiensi sistem AIoT.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>🚀 Produk Akhir</h3>
+          <p>Repo GitHub + Dashboard AIoT + YOLO MQTT Demo.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="arsitektur">
+      <h2 class="section-title">3. Peta AIoT Utuh</h2>
+
+      <div class="card">
+
+        <div class="grid">
+
+          <div class="mini-card">
+            <h3>📷 Device</h3>
+            <p>Kamera, ESP32, sensor, simulator Wokwi.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>🤖 AI</h3>
+            <p>YOLO object detection untuk mengenali objek.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>🌐 Network</h3>
+            <p>MQTT sebagai protokol lightweight realtime.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>📊 Dashboard</h3>
+            <p>Node-RED Dashboard untuk monitoring.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>⚡ Decision</h3>
+            <p>Alert, logging, aktuasi LED/buzzer.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2 class="section-title">4. Workflow Device–Edge–Cloud</h2>
+
+      <div class="card">
+
+<pre><code>[ Kamera / Sensor ]
+        ↓
+[ AI Model (YOLO) ]
+        ↓
+[ Event / Metadata ]
+        ↓
+[ MQTT / Network ]
+        ↓
+[ Dashboard ]
+        ↓
+[ Decision / Action ]</code></pre>
+
+        <br>
+
+        <ul>
+          <li><span class="highlight">Kamera:</span> menghasilkan data mentah.</li>
+          <li><span class="highlight">YOLO:</span> mendeteksi objek.</li>
+          <li><span class="highlight">Event JSON:</span> data ringan hasil AI.</li>
+          <li><span class="highlight">MQTT:</span> distribusi data realtime.</li>
+          <li><span class="highlight">Dashboard:</span> visualisasi dan monitoring.</li>
+          <li><span class="highlight">Action:</span> alert dan otomatisasi.</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">5. Setup Awal</h2>
+
+      <div class="card">
+
+        <ul>
+          <li>Python 3.10+</li>
+          <li>Git & GitHub</li>
+          <li>Node.js LTS</li>
+          <li>Node-RED</li>
+          <li>Mosquitto MQTT</li>
+          <li>Arduino IDE / PlatformIO</li>
+          <li>ESP32</li>
+          <li>Webcam / Video Dataset</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <section id="lab">
+      <h2 class="section-title">6. Praktikum</h2>
+
+      <div class="card">
+        <h3>Lab A — ESP32 Blink</h3>
+
+<pre><code>#define LED_PIN 2
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_PIN, HIGH);
+  delay(1000);
+
+  digitalWrite(LED_PIN, LOW);
+  delay(1000);
+}</code></pre>
+
+        <br>
+
+        <ul>
+          <li>Upload firmware berhasil.</li>
+          <li>LED berkedip normal.</li>
+          <li>Memahami setup() dan loop().</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Lab B — Wokwi Simulation</h3>
+
+        <ul>
+          <li>Buka Wokwi.</li>
+          <li>Buat project ESP32.</li>
+          <li>Paste kode blink.</li>
+          <li>Start Simulation.</li>
+          <li>Simpan URL simulasi.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Lab C — GitHub Starter Repo</h3>
+
+<pre><code>aiot-starter/
+├── README.md
+├── docs/
+├── esp32/
+├── wokwi/
+├── yolo/
+├── mqtt/
+└── nodered/</code></pre>
+
+<pre><code>git clone https://github.com/username/repo.git
+cd repo
+
+git checkout -b feat/initial-setup
+git add .
+git commit -m "init setup"
+git push -u origin feat/initial-setup</code></pre>
+
+      </div>
+
+    </section>
+
+    <section id="mqtt">
+      <h2 class="section-title">7. MQTT Topic & Payload</h2>
+
+      <div class="card">
+
+        <h3>Contoh Topic</h3>
+
+<pre><code>aiot/camera/1/detection
+aiot/camera/1/status
+aiot/dashboard/alert
+aiot/device/esp32/led/cmd</code></pre>
+
+        <h3>Contoh Payload JSON</h3>
+
+<pre><code>{
+  "camera_id": "cam01",
+  "timestamp": "2026-04-04T14:30:22+07:00",
+  "object": "person",
+  "count": 2,
+  "confidence_max": 0.91
+}</code></pre>
+
+      </div>
+    </section>
+
+    <section id="yolo">
+      <h2 class="section-title">8. YOLO Object Detection</h2>
+
+      <div class="card">
+
+        <h3>Install Dependency</h3>
+
+<pre><code>python -m venv .venv
+
+pip install ultralytics
+pip install opencv-python
+pip install paho-mqtt</code></pre>
+
+        <h3>YOLO + MQTT Publisher</h3>
+
+<pre><code>from ultralytics import YOLO
+import cv2
+import json
+import paho.mqtt.client as mqtt
+
+model = YOLO("yolov8n.pt")</code></pre>
+
+        <ul>
+          <li>Gunakan <code>yolov8n</code> untuk demo ringan.</li>
+          <li>Publish event seperlunya.</li>
+          <li>Gunakan rate limiting.</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <h2 class="section-title">9. Dashboard Node-RED</h2>
+
+      <div class="card">
+
+<pre><code>[mqtt in]
+    ↓
+[json]
+    ↓
+[function]
+    ↓
+[ui_text / ui_gauge]</code></pre>
+
+        <h3>Install Node-RED</h3>
+
+<pre><code>npm install -g --unsafe-perm node-red
+node-red</code></pre>
+
+        <h3>Function Counter</h3>
+
+<pre><code>let c = flow.get('counter') || 0;
+c += 1;
+flow.set('counter', c);
+
+msg.payload = c;
+return msg;</code></pre>
+
+      </div>
+    </section>
+
+    <section id="eksperimen">
+      <h2 class="section-title">10. Eksperimen Bandwidth</h2>
+
+      <div class="grid">
+
+        <div class="mini-card">
+          <h3>❌ Mode Boros</h3>
+
+          <p>
+            Mengirim full image/video ke server.
+          </p>
+
+          <br>
+
+          <p>
+            100 kamera ≈ <span class="highlight">72 GB/jam</span>
+          </p>
+
+          <br>
+
+          <p>
+            Dampak:
+          </p>
+
+          <ul>
+            <li>Bandwidth besar</li>
+            <li>Storage mahal</li>
+            <li>Latensi tinggi</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3>✅ Mode AIoT Ideal</h3>
+
+          <p>
+            Mengirim event JSON hasil AI.
+          </p>
+
+          <br>
+
+<pre><code>{
+  "objects": {
+    "person": 2
+  }
+}</code></pre>
+
+          <p>
+            Payload hanya ratusan byte.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Kesimpulan</h3>
+
+        <p>
+          AIoT ideal bukan berarti video tidak pernah dikirim,
+          tetapi sistem lebih efisien jika inferensi dilakukan di edge
+          dan jaringan hanya menerima metadata penting.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section>
+      <h2 class="section-title">11. Output Wajib</h2>
+
+      <div class="card">
+
+        <table>
+          <tr>
+            <th>Output</th>
+            <th>Status</th>
+          </tr>
+
+          <tr>
+            <td>Link GitHub Repo</td>
+            <td>✅</td>
+          </tr>
+
+          <tr>
+            <td>ESP32 Blink / Wokwi</td>
+            <td>✅</td>
+          </tr>
+
+          <tr>
+            <td>YOLO MQTT Script</td>
+            <td>✅</td>
+          </tr>
+
+          <tr>
+            <td>Dashboard Node-RED</td>
+            <td>✅</td>
+          </tr>
+
+          <tr>
+            <td>Eksperimen Bandwidth</td>
+            <td>✅</td>
+          </tr>
+
+        </table>
+
+      </div>
+    </section>
+
+    <section id="troubleshooting">
+      <h2 class="section-title">12. Troubleshooting</h2>
+
+      <div class="grid">
+
+        <div class="mini-card">
+          <h3>ESP32 Tidak Terdeteksi</h3>
+          <p>Cek kabel USB data dan driver serial.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Upload Gagal</h3>
+          <p>Tekan tombol BOOT saat upload.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>MQTT Tidak Jalan</h3>
+          <p>Cek broker, port 1883, dan topic.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Dashboard Tidak Update</h3>
+          <p>Pastikan flow sudah deploy.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>YOLO Lambat</h3>
+          <p>Gunakan resolusi rendah atau video pendek.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Node-RED Error</h3>
+          <p>Pastikan port 1880 tidak digunakan aplikasi lain.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>
+      Modul Praktikum AIoT Device–Edge–Cloud © 2026
+      <br>
+      ESP32 • YOLO • MQTT • Node-RED
+    </p>
+  </footer>
+
+</body>
+</html>
